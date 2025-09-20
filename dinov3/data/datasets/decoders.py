@@ -22,7 +22,13 @@ class ImageDataDecoder(Decoder):
         f = BytesIO(self._image_data)
         return Image.open(f).convert(mode="RGB")
 
+class NCellDecoder(Decoder):
+    def __init__(self, image_data: Image) -> None:
+        self._image_data = image_data
 
+    def decode(self) -> Image:
+        return self._image_data
+        
 class TargetDecoder(Decoder):
     def __init__(self, target: Any):
         self._target = target
